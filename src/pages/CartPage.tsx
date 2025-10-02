@@ -102,13 +102,16 @@ const CartPage = () => {
             R$ {getTotalPrice().toFixed(2).replace(".", ",")}
           </span>
         </div>
-        <Button
-          variant="krooc"
-          size="lg"
-          className="mt-4 w-full rounded-full text-lg font-bold"
-        >
-          AVANÇAR
-        </Button>
+        <Link to="/checkout">
+          <Button
+            variant="krooc"
+            size="lg"
+            className="mt-4 w-full rounded-full text-lg font-bold"
+            disabled={items.length === 0} // Desabilita o botão se o carrinho estiver vazio
+          >
+            AVANÇAR
+          </Button>
+        </Link>
       </footer>
     </div>
   );

@@ -8,14 +8,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import KroocCookiesApp from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
-import { CartProvider } from "./contexts/CartContext"; // Importe o CartProvider
+import CheckoutPage from "./pages/CheckoutPage"; // 1. Importe a nova página
+import { CartProvider } from "./contexts/CartContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      {/* O CartProvider deve envolver o BrowserRouter */}
       <CartProvider>
         <Toaster />
         <Sonner />
@@ -23,6 +23,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<KroocCookiesApp />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} /> {/* 2. Adicione a nova rota */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
