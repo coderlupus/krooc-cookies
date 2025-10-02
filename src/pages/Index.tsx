@@ -1,14 +1,14 @@
-import { useState } from 'react';
+// src/pages/Index.tsx
+
 import Header from '@/components/Header';
 import ProductCard from '@/components/ProductCard';
-import Cart from '@/components/Cart';
-import { CartProvider, Product } from '@/contexts/CartContext';
+import { Product } from '@/contexts/CartContext'; // Não precisamos mais do CartProvider aqui
 
-// Import das imagens
-import cookieClassico from '@/assets/cookie-classico.jpg';
-import cookieChocolate from '@/assets/cookie-chocolate.jpg';
-import cookieNutella from '@/assets/cookie-nutella.jpg';
-import cookieRedVelvet from '@/assets/cookie-red-velvet.jpg';
+// Import das imagens com a extensão correta
+import cookieClassico from '@/assets/cookie-classico.png';
+import cookieChocolate from '@/assets/cookie-chocolate.png';
+import cookieNutella from '@/assets/cookie-nutella.png';
+import cookieRedVelvet from '@/assets/cookie-red-velvet.png';
 
 const products: Product[] = [
   {
@@ -42,33 +42,28 @@ const products: Product[] = [
 ];
 
 const KroocCookiesApp = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
   return (
-    <CartProvider>
-      <div className="min-h-screen bg-background">
-        <Header onCartClick={() => setIsCartOpen(true)} />
-        
-        <main className="container mx-auto px-4 py-12">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 gradient-text">
-              Nossos Cookies Artesanais
-            </h2>
-            <p className="text-krooc-gray text-lg max-w-2xl mx-auto">
-              Feitos com carinho e ingredientes selecionados, nossos cookies são irresistíveis!
-            </p>
-          </div>
+    // O CartProvider foi movido para o App.tsx
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <main className="container mx-auto px-4 py-12">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 gradient-text">
+            Nossos Cookies Artesanais
+          </h2>
+          <p className="text-krooc-gray text-lg max-w-2xl mx-auto">
+            Feitos com carinho e ingredientes selecionados, nossos cookies são irresistíveis!
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </main>
-
-        <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-      </div>
-    </CartProvider>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </main>
+    </div>
   );
 };
 
