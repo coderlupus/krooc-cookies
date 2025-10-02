@@ -71,37 +71,27 @@ const KroocCookiesApp = () => {
       <Header />
 
       <main className="container mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 gradient-text">Nossos Cookies Artesanais</h2>
-          <p className="text-krooc-gray text-lg max-w-2xl mx-auto">
-            Feitos com carinho e ingredientes selecionados, nossos cookies são irresistíveis!
-          </p>
-        </div>
-
-        {/* Seção Cookie do Dia */}
-        <div className="mb-16">
-          <h3 className="text-3xl font-bold text-center mb-8">Cookie do Dia</h3>
-          <div className="flex justify-center">
-            <div className="w-full max-w-sm">
-              <ProductCard product={products[3]} />
-            </div>
+        <section id="products-section">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 gradient-text">
+              Nossos Cookies Artesanais
+            </h2>
+            <p className="text-krooc-gray text-lg max-w-2xl mx-auto">
+              Feitos com carinho e ingredientes selecionados. Escolha os seus favoritos!
+            </p>
           </div>
-        </div>
 
-        {/* Seção Todos os Cookies */}
-        <div>
-          <h3 className="text-3xl font-bold text-center mb-8">Todos os Sabores</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-        </div>
+        </section>
       </main>
 
       <footer className="bg-krooc-gray-light py-8 mt-16">
         <div className="container mx-auto text-center text-krooc-gray">
-          <p>&copy; 2024 Krooc Cookies. Todos os direitos reservados.</p>
+          <p>&copy; 2025 Krooc Cookies. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>
