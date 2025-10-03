@@ -125,6 +125,14 @@ All colors MUST be HSL.
   }
 }
 
+/* Alteração: Remover max-width e padding para ocupar 100% da tela */
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
 @layer components {
   /* Card animations */
   .card-hover {
