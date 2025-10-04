@@ -62,7 +62,7 @@ const CheckoutPage = () => {
 
   return (
     <div className="flex w-full min-h-screen justify-center bg-background">
-      <div className="w-full max-w-xl shadow-lg md:shadow-2xl md:border-x border-border bg-amber-50 font-sans text-foreground">
+      <div className="w-full bg-amber-50 font-sans text-foreground">
         <header className="sticky top-0 z-10 flex items-center justify-between bg-amber-50/80 p-4 backdrop-blur-sm">
           <Link to="/cart">
             <Button variant="ghost" size="icon">

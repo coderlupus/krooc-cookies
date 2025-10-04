@@ -8,36 +8,33 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import StickerIcon from "@/assets/STICKER-COOKIE.png";
-import StickerClub from "@/assets/STICKER-CLUB.png";
-import { products } from "@/lib/products"; // 1. Importe a lista de produtos
+import { products } from "@/lib/products";
 
 const CartPage = () => {
   const { items, updateQuantity, getTotalPrice } = useCart();
 
   return (
-    // Contêiner externo para centralizar o layout "mobile" na tela cheia.
     <div className="flex w-full min-h-screen justify-center bg-background">
-      {/* Contêiner principal com largura limitada e estilos visuais de "frame" no desktop. 
-          Adicionamos 'relative' para que o sticker seja posicionado em relação a ele. */}
-      <div className="w-full max-w-xl shadow-lg md:shadow-2xl md:border-x border-border bg-amber-50 font-sans text-foreground relative">
-        
-        <header className="sticky top-0 z-10 flex items-center justify-between bg-amber-50/80 p-4 backdrop-blur-sm">
-          <Link to="/">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-6 w-6" />
-            </Button>
-          </Link>
-          <h1 className="text-xl font-bold">SEU PEDIDO</h1>
-          <img src={StickerIcon} alt="Sticker Cookie" className="h-12 w-16 object-contain" />
+      <div className="w-full bg-amber-50 font-sans text-foreground">
+
+        <header className="sticky top-0 z-10 flex items-center justify-between bg-amber-50/80 p-4 backdrop-blur-sm border-b">
+          <div className="container mx-auto flex items-center justify-between">
+            <Link to="/">
+              <Button variant="ghost" size="icon">
+                <ArrowLeft className="h-6 w-6" />
+              </Button>
+            </Link>
+            <h1 className="text-xl font-bold">SEU PEDIDO</h1>
+            <img src={StickerIcon} alt="Sticker Cookie" className="h-12 w-16 object-contain" />
+          </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-4">
+        <main className="flex-1 overflow-y-auto p-4 container mx-auto">
           {items.length > 0 ? (
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-2xl mx-auto">
               {items.map((item) => {
-                // 2. Encontre as informações completas do produto usando o ID
                 const productInfo = products.find(p => p.id === item.id);
-                if (!productInfo) return null; // Medida de segurança caso o produto não seja encontrado
+                if (!productInfo) return null;
 
                 return (
                   <div key={item.id} className="flex items-center gap-4">
@@ -46,7 +43,6 @@ const CartPage = () => {
                       <CardContent className="flex items-center gap-4 p-3">
                         <div className="h-20 w-20 rounded-lg bg-muted flex-shrink-0">
                           <img
-                            // 3. Use a imagem do 'productInfo' encontrado
                             src={productInfo.image}
                             alt={item.name}
                             className="h-full w-full object-cover"
@@ -85,7 +81,7 @@ const CartPage = () => {
               })}
             </div>
           ) : (
-            <div className="flex h-full flex-col items-center justify-center text-center">
+            <div className="flex h-full flex-col items-center justify-center text-center py-20">
               <h2 className="text-2xl font-bold">Seu carrinho está vazio.</h2>
               <p className="text-muted-foreground">Que tal adicionar alguns cookies deliciosos?</p>
               <Link to="/">
@@ -96,31 +92,26 @@ const CartPage = () => {
             </div>
           )}
         </main>
-        
-        {/* Alteração 3: Posicionar o sticker relativamente ao contêiner principal */}
-        <img 
-          src={StickerClub} 
-          alt="The Best Cookie Club" 
-          className="absolute bottom-24 left-0 h-auto w-28 object-contain" // Mudado 'fixed' para 'absolute'
-        />
 
         <footer className="sticky bottom-0 border-t border-border bg-amber-50 p-4">
-          <div className="flex items-center justify-between font-bold">
-            <span className="text-lg">PEDIDO:</span>
-            <span className="text-2xl">
-              R$ {getTotalPrice().toFixed(2).replace(".", ",")}
-            </span>
+          <div className="container mx-auto max-w-2xl">
+            <div className="flex items-center justify-between font-bold">
+              <span className="text-lg">PEDIDO:</span>
+              <span className="text-2xl">
+                R$ {getTotalPrice().toFixed(2).replace(".", ",")}
+              </span>
+            </div>
+            <Link to="/checkout">
+              <Button
+                variant="krooc"
+                size="lg"
+                className="mt-4 w-full rounded-full text-lg font-bold"
+                disabled={items.length === 0}
+              >
+                AVANÇAR
+              </Button>
+            </Link>
           </div>
-          <Link to="/checkout">
-            <Button
-              variant="krooc"
-              size="lg"
-              className="mt-4 w-full rounded-full text-lg font-bold"
-              disabled={items.length === 0}
-            >
-              AVANÇAR
-            </Button>
-          </Link>
         </footer>
       </div>
     </div>
